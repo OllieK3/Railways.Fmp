@@ -8,12 +8,13 @@ public class JumpTrigger : MonoBehaviour {
     public GameObject ThePlayer;
     public GameObject JumpCam;
     public GameObject Flashing;
-
+    public GameObject Text;
     void OnTriggerEnter () {
         Scream.Play ();
         JumpCam.SetActive(true);
         ThePlayer.SetActive(false);
         Flashing.SetActive(true);
+        Text.SetActive(true);
         StartCoroutine(EndJump ());
     } 
    
@@ -22,6 +23,7 @@ public class JumpTrigger : MonoBehaviour {
         ThePlayer.SetActive(true);
         JumpCam.SetActive(false);
         Flashing.SetActive(false);
+        Text.SetActive(false);
     }
 
 }
