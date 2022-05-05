@@ -23,8 +23,11 @@ public class PlayerController : MonoBehaviour
     Vector2 currentMouseDelta = Vector2.zero;
     Vector2 currentMouseDeltaVelocity = Vector2.zero;
 
+ 
+
     void Start()
     {
+
         controller = GetComponent<CharacterController>();
         if (lockCursor)
         {
@@ -67,6 +70,6 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY;
 
         controller.Move(velocity * Time.deltaTime);
-
     }
+
 }
