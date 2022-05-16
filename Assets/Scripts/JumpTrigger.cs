@@ -9,13 +9,16 @@ public class JumpTrigger : MonoBehaviour {
     public GameObject JumpCam;
     public GameObject Flashing;
     public GameObject Text;
-    void OnTriggerEnter () {
-        Scream.Play ();
-        JumpCam.SetActive(true);
-        ThePlayer.SetActive(false);
-        Flashing.SetActive(true);
-        Text.SetActive(true);
-        StartCoroutine(EndJump ());
+    void OnTriggerEnter (Collider other) {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Scream.Play();
+            JumpCam.SetActive(true);
+            ThePlayer.SetActive(false);
+            Flashing.SetActive(true);
+            Text.SetActive(true);
+            StartCoroutine(EndJump());
+        }
     } 
    
     IEnumerator EndJump() {
@@ -25,10 +28,4 @@ public class JumpTrigger : MonoBehaviour {
         Flashing.SetActive(false);
         Text.SetActive(false);
     }
-
 }
-
-
-    
-  
-    
