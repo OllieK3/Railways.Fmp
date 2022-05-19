@@ -1,17 +1,22 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NPCinteraction : MonoBehaviour
 {
-    public GameObject textbox, buttonPrompt;
+    public GameObject buttonPrompt;
+    public TextMeshProUGUI textbox;
+
+    [TextArea(3, 20)]
+    public string message;
 
     private bool talking;
     private int inTriggerCount;
-    
+
     void Awake()
     {
-        textbox.SetActive(false);
+        textbox.gameObject.SetActive(false);
         buttonPrompt.SetActive(false);
     }
 
@@ -19,7 +24,8 @@ public class NPCinteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            textbox.SetActive(false);
+            textbox.gameObject.SetActive(false);
+            textbox.text = message;
             buttonPrompt.SetActive(true);
 
             inTriggerCount++;
@@ -34,7 +40,7 @@ public class NPCinteraction : MonoBehaviour
 
             if (inTriggerCount == 0)
             {
-                textbox.SetActive(false);
+                textbox.gameObject.SetActive(false);
                 buttonPrompt.SetActive(false);
                 talking = false;
             }
@@ -43,15 +49,16 @@ public class NPCinteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) { // Only when first pressed
+        if (Input.GetKeyDown(KeyCode.F))
+        { // Only when first pressed
             if (talking)
             {
-                textbox.SetActive(false);
+                textbox.gameObject.SetActive(false);
                 buttonPrompt.SetActive(true);
             }
             else
             {
-                textbox.SetActive(true);
+                textbox.gameObject.SetActive(true);
                 buttonPrompt.SetActive(false);
             }
             talking = !talking;
